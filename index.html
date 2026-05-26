@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoftLife Career Bundle — Remote Job Toolkit for Nigerians</title>
+
+  <!-- FACEBOOK PIXEL — Replace YOUR_PIXEL_ID -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+
+  <!-- Paystack -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f7f5f0;
+      --white:     #ffffff;
+      --surface:   #eef0eb;
+      --card:      #ffffff;
+      --green:     #1a9c4e;
+      --green-lt:  #e8f5ed;
+      --green-mid: #d0eedd;
+      --dark:      #111a14;
+      --text:      #1e2820;
+      --muted:     #6b7a70;
+      --gold:      #d97706;
+      --gold-lt:   #fef3c7;
+      --red:       #dc2626;
+      --red-lt:    #fef2f2;
+      --border:    #dde5d8;
+      --radius:    14px;
+      --wa-green:  #128C7E;
+      --wa-bubble: #dcf8c6;
+      --wa-bg:     #ece5dd;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 920px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+    .tag {
+      display: inline-block;
+      background: var(--green-lt);
+      color: var(--green);
+      border: 1px solid #b8dfc8;
+      border-radius: 100px;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+    }
+
+    /* ══════════════════ PROGRESS BAR ══════════════════ */
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; background: var(--green);
+      z-index: 300; width: 0%;
+      transition: width .1s linear;
+    }
+
+    /* ══════════════════ TOP BAR ══════════════════ */
+    .topbar {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .topbar strong { color: #7ee8a2; }
+
+    /* ══════════════════ NAV STRIP ══════════════════ */
+    .nav-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 200;
+      box-shadow: 0 1px 8px rgba(0,0,0,.06);
+    }
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-cta {
+      background: var(--green);
+      color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      padding: 9px 20px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: #158041; transform: translateY(-1px); }
+
+    /* ══════════════════ BUTTONS ══════════════════ */
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 16px 32px;
+      border-radius: 100px;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(26,156,78,.25);
+    }
+    .btn-primary:hover { background: #158041; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(26,156,78,.35); }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--dark);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 30px;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 28px;
+      border-radius: 100px;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .btn-wa svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+    .btn-block { width: 100%; text-align: center; display: block; justify-content: center; }
+
+    /* ══════════════════ HERO ══════════════════ */
+    .hero {
+      background: var(--white);
+      padding: 80px 20px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, #d0eedd 0%, transparent 70%);
+      top: -200px; left: 50%; transform: translateX(-50%);
+      pointer-events: none; opacity: .6;
+    }
+
+    .hero .tag { margin-bottom: 22px; animation: fadeUp .6s ease both; }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      line-height: .92;
+      letter-spacing: .01em;
+      color: var(--dark);
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero h1 em { font-style: normal; color: var(--green); }
+
+    .hero .sub {
+      margin: 22px auto 0;
+      max-width: 520px;
+      font-size: 1.12rem;
+      color: var(--muted);
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero .sub strong { color: var(--dark); }
+
+    .hero-badges {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+      margin-top: 28px;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .hero-badges span {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .hero-badges span b { color: var(--green); }
+
+    .hero-cta-wrap {
+      margin-top: 36px;
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .7s .4s ease both;
+    }
+
+    /* trust bar */
+    .trust-bar {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 16px 20px;
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .82rem; color: var(--muted); font-weight: 500;
+    }
+    .trust-item .icon { font-size: 1.1rem; }
+
+    /* ══════════════════ PAIN ══════════════════ */
+    .pain {
+      padding: 80px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .pain h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.7rem);
+      font-weight: 800;
+      text-align: center; color: var(--dark); margin-bottom: 12px;
+    }
+    .pain .lead { text-align: center; color: var(--muted); max-width: 500px; margin: 0 auto 44px; }
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 14px; }
+    .pain-card {
+      background: var(--white);
+      border: 1.5px solid #f0d9d9;
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex; gap: 13px; align-items: flex-start;
+      transition: box-shadow .2s, transform .15s;
+    }
+    .pain-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.07); transform: translateY(-2px); }
+    .pain-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+    .pain-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .pain-card p { font-size: .84rem; color: var(--muted); }
+
+    /* ══════════════════ INSIDE ══════════════════ */
+    .inside { padding: 90px 20px; background: var(--white); border-bottom: 1px solid var(--border); }
+    .inside h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.8rem, 5vw, 2.7rem); font-weight: 800; text-align: center; color: var(--dark); margin-bottom: 12px; }
+    .inside .lead { text-align: center; color: var(--muted); max-width: 500px; margin: 0 auto 44px; }
+    .section-label { text-align: center; margin-bottom: 10px; }
+
+    .tier-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
+    .tier-tab {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      color: var(--muted);
+      border-radius: 100px;
+      padding: 9px 22px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700; font-size: .88rem;
+      cursor: pointer; transition: all .2s;
+    }
+    .tier-tab.active { background: var(--green); border-color: var(--green); color: #fff; }
+
+    .features-panel { display: none; }
+    .features-panel.active { display: block; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 13px; }
+    .feature-item {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex; gap: 12px; align-items: flex-start;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .feature-item:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(26,156,78,.1); }
+    .feature-check {
+      width: 22px; height: 22px;
+      background: var(--green-lt);
+      border: 1.5px solid #a8d8ba;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: .62rem; color: var(--green);
+      margin-top: 2px; font-weight: 700;
+    }
+    .feature-item h4 { font-family: 'Bricolage Grotesque', sans-serif; font-size: .93rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+    .feature-item p { font-size: .81rem; color: var(--muted); }
+
+    .premium-extra { background: var(--gold-lt); border-color: #fcd34d; }
+    .premium-extra .feature-check { background: #fef3c7; border-color: #f59e0b; color: var(--gold); }
+    .premium-extra h4 { color: #92400e; }
+    .premium-extra p { color: #78350f; }
+
+    /* ══════════════════ FOUNDER NOTE ══════════════════ */
+    .founders {
+      padding: 90px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .founders::before {
+      content: '"';
+      position: absolute; top: -60px; left: 10px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30rem; color: rgba(26,156,78,.05);
+      pointer-events: none; line-height: 1; z-index: 0;
+    }
+    .founders-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+    .founders-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 40px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.06);
+    }
+    @media(max-width:600px){ .founders-card { padding: 28px 20px; } }
+
+    .founders-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    .founders-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), #0d6e35);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(26,156,78,.3);
+    }
+    .founders-header h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; color: var(--dark); font-size: 1rem; margin-bottom: 2px; }
+    .founders-header span { font-size: .78rem; color: var(--muted); }
+    .founders-divider { height: 1px; background: var(--border); margin-bottom: 26px; }
+    .founders-body p { font-size: 1.03rem; color: #3a4a3e; margin-bottom: 16px; line-height: 1.78; }
+    .founders-body p strong { color: var(--dark); }
+    .founders-body p em { color: var(--green); font-style: normal; font-weight: 600; }
+    .founders-callout {
+      background: var(--green-lt);
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 18px 20px; margin: 24px 0;
+    }
+    .founders-callout p {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.06rem; font-weight: 700;
+      color: var(--dark) !important; margin: 0 !important;
+    }
+    .founders-sign { margin-top: 24px; font-size: .95rem; color: var(--muted); }
+    .founders-sign strong { color: var(--green); display: block; font-size: 1rem; margin-top: 4px; }
+
+    .founders-cta-wrap { margin-top: 36px; text-align: center; }
+    .sapa-pill {
+      display: inline-block;
+      background: var(--red-lt);
+      border: 1px solid #fca5a5;
+      color: var(--red);
+      border-radius: 100px; font-size: .74rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 5px 14px; margin-bottom: 18px;
+    }
+
+    /* ══════════════════ TESTIMONIALS ══════════════════ */
+    .testimonials {
+      padding: 90px 20px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .testimonials h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.8rem, 5vw, 2.7rem); font-weight: 800; text-align: center; color: var(--dark); margin-bottom: 10px; }
+    .testimonials .lead { text-align: center; color: var(--muted); max-width: 500px; margin: 0 auto 52px; }
+
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+
+    /* ── Phone shell ── */
+    .wa-phone {
+      background: #1a1a1a;
+      border-radius: 36px;
+      box-shadow:
+        0 0 0 1px #2a2a2a,
+        0 0 0 3px #111,
+        0 20px 60px rgba(0,0,0,.35),
+        0 4px 12px rgba(0,0,0,.2);
+      overflow: hidden;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 10px 5px 14px;
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .wa-phone:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow:
+        0 0 0 1px #2a2a2a,
+        0 0 0 3px #111,
+        0 30px 80px rgba(0,0,0,.4),
+        0 8px 20px rgba(0,0,0,.25);
+    }
+
+    /* Camera notch */
+    .wa-notch {
+      width: 90px; height: 22px;
+      background: #1a1a1a;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto 4px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      position: relative; z-index: 2;
+    }
+    .wa-notch-cam {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #222;
+      border: 1.5px solid #333;
+      box-shadow: inset 0 0 0 2px #1a1a1a, inset 0 0 0 3px #2d2d2d;
+    }
+
+    /* Screen wrapper */
+    .wa-screen {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Status bar */
+    .wa-status-bar {
+      background: #075E54;
+      padding: 5px 14px 3px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .58rem; color: #fff; font-weight: 600;
+      letter-spacing: .02em;
+    }
+    .wa-status-time { font-size: .65rem; font-weight: 700; }
+    .wa-status-icons { display: flex; align-items: center; gap: 5px; }
+    .wa-signal { display: flex; align-items: flex-end; gap: 1px; }
+    .wa-signal span {
+      background: #fff; border-radius: 1px; width: 3px;
+      display: inline-block;
+    }
+    .wa-signal span:nth-child(1) { height: 4px; }
+    .wa-signal span:nth-child(2) { height: 6px; }
+    .wa-signal span:nth-child(3) { height: 8px; }
+    .wa-signal span:nth-child(4) { height: 10px; }
+    .wa-battery {
+      width: 17px; height: 9px;
+      border: 1.5px solid rgba(255,255,255,.8);
+      border-radius: 2px; position: relative;
+      display: flex; align-items: center;
+    }
+    .wa-battery::after {
+      content: '';
+      position: absolute; right: -4px; top: 50%;
+      transform: translateY(-50%);
+      width: 2px; height: 5px;
+      background: rgba(255,255,255,.6);
+      border-radius: 0 1px 1px 0;
+    }
+    .wa-battery-fill {
+      height: 5px; width: 65%; background: #fff;
+      border-radius: 1px; margin: 0 1px;
+    }
+
+    /* WA Header */
+    .wa-header {
+      background: #075E54;
+      padding: 8px 12px 10px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .wa-back {
+      color: rgba(255,255,255,.9);
+      font-size: 1.3rem; line-height: 1;
+      margin-right: -2px; margin-top: -1px;
+    }
+    .wa-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #d1d7db;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,.2);
+      overflow: hidden;
+    }
+    .wa-contact { flex: 1; min-width: 0; }
+    .wa-contact .name {
+      font-weight: 600; color: #fff;
+      font-size: .82rem; line-height: 1.25;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    .wa-contact .status {
+      font-size: .65rem; color: rgba(255,255,255,.78);
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    .wa-hdr-icons {
+      display: flex; gap: 18px; align-items: center;
+      color: rgba(255,255,255,.9);
+    }
+    .wa-hdr-icons svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* WA Wallpaper chat body */
+    .wa-body {
+      background-color: #e5ddd5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c8bdb5' stroke-width='.6' opacity='.5'%3E%3Cpath d='M20 10 Q40 0 60 10 Q80 20 60 30 Q40 40 20 30 Q0 20 20 10Z'/%3E%3Cpath d='M20 50 Q40 40 60 50 Q80 60 60 70 Q40 80 20 70 Q0 60 20 50Z'/%3E%3C/g%3E%3C/svg%3E");
+      padding: 8px 10px 10px;
+      min-height: 260px;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+
+    /* Date pill */
+    .wa-date {
+      text-align: center;
+      background: rgba(255,255,255,.75);
+      color: #54656f;
+      font-size: .6rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin: 2px auto 6px;
+      width: fit-content;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      box-shadow: 0 1px 1px rgba(0,0,0,.06);
+    }
+
+    /* Message rows */
+    .wa-msg {
+      display: flex;
+      flex-direction: column;
+      max-width: 78%;
+      position: relative;
+    }
+    .wa-msg.them { align-self: flex-start; padding-left: 6px; }
+    .wa-msg.me   { align-self: flex-end;   padding-right: 6px; }
+
+    /* Bubble tails via clip-path pseudo */
+    .wa-bubble {
+      border-radius: 7.5px;
+      padding: 6px 9px 4px;
+      font-size: .75rem;
+      line-height: 1.52;
+      position: relative;
+      word-break: break-word;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    }
+
+    /* "them" bubble — white with left tail */
+    .wa-msg.them .wa-bubble {
+      background: #fff;
+      color: #111;
+      border-top-left-radius: 2px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.12);
+    }
+    .wa-msg.them .wa-bubble::before {
+      content: '';
+      position: absolute;
+      left: -6px; top: 0;
+      width: 0; height: 0;
+      border-top: 6px solid #fff;
+      border-left: 6px solid transparent;
+    }
+
+    /* sender name inside "them" bubbles */
+    .wa-sender {
+      font-size: .65rem;
+      font-weight: 700;
+      color: #128C7E;
+      margin-bottom: 1px;
+      display: block;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    }
+
+    /* "me" bubble — mint green with right tail */
+    .wa-msg.me .wa-bubble {
+      background: #d9fdd3;
+      color: #111;
+      border-top-right-radius: 2px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.12);
+    }
+    .wa-msg.me .wa-bubble::before {
+      content: '';
+      position: absolute;
+      right: -6px; top: 0;
+      width: 0; height: 0;
+      border-top: 6px solid #d9fdd3;
+      border-right: 6px solid transparent;
+    }
+
+    /* Timestamp row inside bubble */
+    .wa-time {
+      float: right;
+      font-size: .6rem;
+      color: #8696a0;
+      margin-left: 8px;
+      margin-top: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      clear: none;
+      vertical-align: bottom;
+      line-height: 1;
+      padding-bottom: 1px;
+    }
+    /* Blue double-tick for "me" messages */
+    .wa-msg.me .wa-tick {
+      display: inline-flex; align-items: center;
+    }
+    .wa-msg.me .wa-tick svg { width: 14px; height: 9px; }
+
+    /* Spacing between consecutive same-sender messages */
+    .wa-msg.them + .wa-msg.them,
+    .wa-msg.me + .wa-msg.me { margin-top: 1px; }
+    .wa-msg.them + .wa-msg.me,
+    .wa-msg.me + .wa-msg.them { margin-top: 6px; }
+
+    /* WA Footer bar */
+    .wa-footer {
+      background: #f0f2f5;
+      padding: 7px 10px 8px;
+      display: flex; align-items: center; gap: 8px;
+      border-top: 1px solid #d1d7db;
+    }
+    .wa-footer-icon { color: #8696a0; display: flex; align-items: center; }
+    .wa-footer-icon svg { width: 20px; height: 20px; fill: currentColor; }
+    .wa-input {
+      flex: 1; background: #fff;
+      border-radius: 22px; padding: 7px 13px;
+      font-size: .7rem; color: #8696a0;
+      border: none;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
+      box-shadow: 0 1px 2px rgba(0,0,0,.06);
+    }
+    .wa-send {
+      width: 34px; height: 34px;
+      background: #00a884;
+      border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wa-send svg { width: 18px; height: 18px; fill: #fff; margin-left: 2px; }
+
+    /* Result badge below each phone */
+    .wa-result-badge {
+      background: var(--green-lt);
+      border: 1px solid #a8d8ba;
+      border-radius: 0 0 22px 22px;
+      padding: 9px 14px 10px;
+      text-align: center;
+      font-size: .72rem;
+      color: var(--green);
+      font-weight: 700;
+      margin: 0 5px;
+      letter-spacing: .01em;
+    }
+
+    /* star rating */
+    .testi-stars { color: #f59e0b; font-size: .85rem; margin-bottom: 6px; }
+
+    /* ══════════════════ PRICING ══════════════════ */
+    .pricing {
+      padding: 90px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.8rem, 5vw, 2.7rem); font-weight: 800; text-align: center; color: var(--dark); margin-bottom: 12px; }
+    .pricing .lead { text-align: center; color: var(--muted); max-width: 460px; margin: 0 auto 52px; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 740px; margin: 0 auto; }
+
+    .price-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      position: relative;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(0,0,0,.08); }
+    .price-card.featured { border-color: var(--green); box-shadow: 0 0 0 1px var(--green), 0 8px 40px rgba(26,156,78,.12); }
+
+    .price-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+      padding: 5px 18px; border-radius: 100px; white-space: nowrap;
+    }
+    .price-tier { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .price-card.featured .price-tier { color: var(--green); }
+    .price-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
+    .price-amount { display: flex; align-items: baseline; gap: 3px; margin-bottom: 6px; }
+    .price-currency { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--green); }
+    .price-value { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--dark); }
+    .price-card.featured .price-value { color: var(--green); }
+    .price-desc { font-size: .84rem; color: var(--muted); margin-bottom: 24px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+    .price-features { list-style: none; margin-bottom: 30px; }
+    .price-features li { display: flex; gap: 9px; align-items: flex-start; font-size: .86rem; color: #3a4a3e; margin-bottom: 11px; }
+    .price-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ══════════════════ GUARANTEE ══════════════════ */
+    .guarantee { padding: 60px 20px; background: var(--white); border-bottom: 1px solid var(--border); text-align: center; }
+    .guarantee-box {
+      background: var(--green-lt);
+      border: 1.5px solid #a8d8ba;
+      border-radius: 20px; padding: 40px 32px;
+      max-width: 600px; margin: 0 auto;
+    }
+    .guarantee-icon { font-size: 3rem; margin-bottom: 14px; }
+    .guarantee-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--dark); margin-bottom: 10px; }
+    .guarantee-box p { color: var(--muted); font-size: .93rem; max-width: 440px; margin: 0 auto; }
+
+    /* ══════════════════ FAQ ══════════════════ */
+    .faq { padding: 70px 20px 90px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .faq h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 800; text-align: center; color: var(--dark); margin-bottom: 40px; }
+    .faq-list { max-width: 680px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); background: transparent; }
+    .faq-q { width: 100%; background: none; border: none; color: var(--dark); font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: .97rem; text-align: left; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-q .arrow { width: 26px; height: 26px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .68rem; flex-shrink: 0; transition: transform .25s, background .2s, border-color .2s; color: var(--green); }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); background: var(--green); color: #fff; border-color: var(--green); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s; color: var(--muted); font-size: .91rem; line-height: 1.72; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+
+    /* ══════════════════ FINAL CTA ══════════════════ */
+    .final-cta {
+      padding: 90px 20px;
+      background: var(--dark);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,156,78,.12), transparent);
+      pointer-events: none;
+    }
+    .final-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 8vw, 5.5rem); line-height: 1; color: #fff; margin-bottom: 14px; }
+    .final-cta h2 span { color: #7ee8a2; }
+    .final-cta p { color: rgba(255,255,255,.6); max-width: 480px; margin: 0 auto 36px; font-size: 1.05rem; }
+
+    /* ══════════════════ CONTACT STRIP ══════════════════ */
+    .contact-strip {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .contact-strip h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--dark); margin-bottom: 6px; }
+    .contact-strip p { color: var(--muted); font-size: .88rem; margin-bottom: 24px; }
+    .contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ══════════════════ FOOTER ══════════════════ */
+    footer {
+      background: var(--dark);
+      padding: 28px 20px;
+      text-align: center;
+      font-size: .78rem;
+      color: rgba(255,255,255,.4);
+    }
+    footer a { color: #7ee8a2; text-decoration: none; }
+
+    /* ══════════════════ MODAL ══════════════════ */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(8px);
+      z-index: 1000; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 40px 32px;
+      width: 100%; max-width: 420px;
+      position: relative;
+      animation: scaleIn .25s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,.15);
+    }
+    @keyframes scaleIn { from { opacity:0; transform: scale(.92); } to { opacity:1; transform:scale(1); } }
+    .modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; }
+    .modal-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
+    .modal-box p { font-size: .88rem; color: var(--muted); margin-bottom: 22px; }
+    .modal-box label { display: block; font-size: .78rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+    .modal-box input { width: 100%; background: var(--bg); border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 16px; color: var(--dark); font-family: 'Outfit', sans-serif; font-size: 1rem; outline: none; margin-bottom: 18px; transition: border-color .2s; }
+    .modal-box input:focus { border-color: var(--green); }
+    .modal-note { font-size: .73rem; color: var(--muted); text-align: center; margin-top: 10px; }
+
+    /* ══════════════════ STICKY BAR (Mobile) ══════════════════ */
+    .sticky-bar {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(247,245,240,.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px; z-index: 100; gap: 10px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+    }
+    @media(max-width:640px) { .sticky-bar { display: flex; } }
+    .sticky-bar button { flex: 1; font-size: .82rem; padding: 12px 8px; }
+
+    /* ══════════════════ FLASH ANIMATION ══════════════════ */
+    @keyframes flashPulse {
+      0%, 100% { opacity: 1; color: #7ee8a2; text-shadow: 0 0 8px rgba(126,232,162,.7); }
+      50% { opacity: .45; color: #fff; text-shadow: none; }
+    }
+    .flash-text {
+      animation: flashPulse 1.1s ease-in-out infinite;
+      display: inline;
+    }
+
+    /* ══════════════════ HOOK SECTION ══════════════════ */
+    .hook-section {
+      background: var(--dark);
+      padding: 70px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--green);
+    }
+    .hook-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(26,156,78,.09), transparent);
+      pointer-events: none;
+    }
+    .hook-eyebrow {
+      display: inline-block;
+      background: rgba(220,38,38,.15);
+      border: 1px solid rgba(220,38,38,.4);
+      color: #f87171;
+      border-radius: 100px;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      margin-bottom: 22px;
+      animation: fadeUp .5s ease both;
+    }
+    .hook-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.6rem, 10vw, 6rem);
+      line-height: .95;
+      color: #fff;
+      margin-bottom: 20px;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .hook-headline .strike {
+      color: #f87171;
+      position: relative;
+      display: inline-block;
+    }
+    .hook-headline .strike::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%; height: 5px;
+      background: #f87171;
+      transform: rotate(-3deg);
+    }
+    .hook-headline .accent { color: #7ee8a2; }
+    .hook-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 560px;
+      margin: 0 auto 34px;
+      text-align: left;
+      animation: fadeUp .6s .2s ease both;
+    }
+    .hook-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: .95rem;
+      color: rgba(255,255,255,.82);
+      line-height: 1.5;
+    }
+    .hook-bullet .hb-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .hook-bullet strong { color: #fff; }
+    .hook-cta-wrap {
+      animation: fadeUp .6s .3s ease both;
+    }
+    .hook-divider {
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 420px;
+      margin-left: auto; margin-right: auto;
+      opacity: .35;
+    }
+    .hook-divider::before, .hook-divider::after {
+      content: ''; flex: 1; height: 1px; background: #fff;
+    }
+    .hook-divider span { font-size: .72rem; color: #fff; white-space: nowrap; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* ══════════════════ ANIMATIONS ══════════════════ */
+    @keyframes fadeUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════ MOBILE ══════════════════ */
+    @media(max-width:600px) {
+      .hero { padding: 50px 20px 50px; }
+      .hero-cta-wrap { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-ghost, .btn-wa { width: 100%; max-width: 340px; text-align: center; }
+      .modal-box { padding: 28px 18px; }
+      .trust-bar { gap: 14px; }
+      .nav-strip { padding: 12px 16px; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Sticky Mobile Bar -->
+<div class="sticky-bar" id="stickyBar">
+  <button class="btn-ghost" onclick="openModal('starter')">Starter ₦3,500</button>
+  <button class="btn-primary" onclick="openModal('premium')">Break Free ₦7,500</button>
+</div>
+
+<!-- ═══ TOPBAR ═══ -->
+<div class="topbar">
+  🔥 <strong class="flash-text">Limited Pricing Active</strong> — Over 500 Nigerians already accessing their copies. Don't get left behind.
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav-strip">
+  <div class="nav-logo">Soft<span>Life</span> Career Bundle</div>
+  <button class="nav-cta" onclick="openModal('premium')">😤 Hate Sapa? Start Here</button>
+</nav>
+
+<!-- ═══ HOOK SECTION ═══ -->
+<section class="hook-section">
+  <div class="container">
+    <div class="hook-eyebrow">⚠️ The Hard Truth Nobody Is Telling You</div>
+    <h2 class="hook-headline">
+      A <span class="strike">₦50,000</span><br>SALARY IS A <span class="accent">SCAM.</span><br>HERE'S WHY.
+    </h2>
+    <div class="hook-bullets">
+      <div class="hook-bullet"><span class="hb-icon">📉</span><span>At today's exchange rate, ₦50,000 is barely <strong>$30 USD</strong>. Your barber in London makes more per hour than you do per month.</span></div>
+      <div class="hook-bullet"><span class="hb-icon">🔁</span><span>You were promised: study hard → get a good job → live well. But inflation ate your salary before you could cash it.</span></div>
+      <div class="hook-bullet"><span class="hb-icon">💻</span><span>Meanwhile, <strong>Nigerians with the same skills as you</strong> are billing foreign clients in USD, GBP and EUR — from their bedrooms in Lagos, Abuja and Ibadan.</span></div>
+      <div class="hook-bullet"><span class="hb-icon">🚪</span><span>The door to foreign income is open. You just weren't handed the right key. <strong>Until now.</strong></span></div>
+    </div>
+    <div class="hook-cta-wrap">
+      <button class="btn-primary" onclick="openModal('premium')" style="font-size:1.08rem;padding:18px 36px;">
+        😤 Show Me The Exit — Break Free Here
+      </button>
+    </div>
+    <div class="hook-divider"><span>scroll down to see the full toolkit</span></div>
+  </div>
+</section>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <span class="tag">🌍 Built for Nigerians. Priced for Nigerians.</span>
+    <h1>SOFTLIFE<br><em>CAREER</em><br>BUNDLE</h1>
+    <p class="sub">The complete remote job toolkit that turns your <strong>local hustle into a foreign salary</strong> — without leaving Nigeria.</p>
+    <div class="hero-badges">
+      <span>🤖 <b>AI-Powered</b> CV Tools</span>
+      <span>📩 <b>Cold DM & Email Scripts</b></span>
+      <span>💵 <b>USD-Ready Templates</b></span>
+      <span>⚡ <b>Instant Download</b></span>
+    </div>
+    <div class="hero-cta-wrap">
+      <button class="btn-primary" onclick="openModal('premium')">😤 Hate Sapa? Break Free Here</button>
+      <a href="#pricing" class="btn-ghost">See What's Inside ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <span class="trust-item"><span class="icon">🔒</span> Paystack Secured</span>
+  <span class="trust-item"><span class="icon">⚡</span> Instant Download</span>
+  <span class="trust-item"><span class="icon">🛡️</span> 7-Day Guarantee</span>
+  <span class="trust-item"><span class="icon">📲</span> Works on Any Device</span>
+  <span class="trust-item"><span class="icon">🇳🇬</span> Made for Nigeria</span>
+</div>
+
+<!-- ═══ PAIN ═══ -->
+<section class="pain">
+  <div class="container">
+    <h2 class="reveal">Does This Sound Like You?</h2>
+    <p class="lead reveal">If even one of these hits close to home, this toolkit was built for you.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">📤</div>
+        <div><h3>Sending CVs and hearing nothing</h3><p>100 applications, 2 auto-replies, 0 interviews. Your format is the problem — not your skill.</p></div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🤖</div>
+        <div><h3>Rejected before a human sees you</h3><p>ATS bots filter you out instantly because your resume wasn't built for the global market.</p></div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">💸</div>
+        <div><h3>Earning Naira while peers earn Dollars</h3><p>You have the skills. The exchange rate alone should be your raise. Yet here we are.</p></div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🤐</div>
+        <div><h3>No clue how to reach foreign employers</h3><p>You don't know how to frame local experience for global companies — so they don't hire you.</p></div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📵</div>
+        <div><h3>Cold outreach that goes nowhere</h3><p>Your LinkedIn DMs and emails get ignored because generic messages never open global doors.</p></div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🕐</div>
+        <div><h3>Watching others make the leap without you</h3><p>People with fewer skills than you are now earning remotely. The difference? They had the right toolkit.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOUNDER'S NOTE ═══ -->
+<section class="founders">
+  <div class="container">
+    <div class="founders-inner">
+      <div class="founders-card reveal">
+        <div class="founders-header">
+          <div class="founders-avatar">F</div>
+          <div>
+            <h3>A Personal Word From The Founder</h3>
+            <span>Read this before you scroll past — it matters.</span>
+          </div>
+        </div>
+        <div class="founders-divider"></div>
+        <div class="founders-body">
+          <p><strong>Before you proceed, let's talk man-to-man.</strong></p>
+          <p>Look, I know where you are because <strong>I lived there.</strong> Sapa wasn't just a guest in my house — we were roommates. We were <em>"5 & 6."</em></p>
+          <p>I have done it all. Washed cars until my palms peeled. Carried blocks at construction sites under the scorching sun. Hawked pure water on the Lagos express just to eat. I have tasted the full bitterness of a system that is <strong>designed to keep you broke.</strong></p>
+          <div class="founders-callout">
+            <p>💡 But I realised something while I was out there: Hard work alone doesn't pay the bills in Nigeria. <em>Smart, global leverage does.</em></p>
+          </div>
+          <p>I didn't build this toolkit to make money. I built it because I was tired of watching <strong>brilliant Nigerians with massive potential</strong> get deleted by automated screening bots — simply because nobody taught them how to format a resume for the global market.</p>
+          <p>I packed every trick, script, AI-prompt, and direct-outreach hack that finally allowed me to <strong>trade the construction site for a USD salary</strong> — all into this one bundle.</p>
+          <p>Here is the truth: If you are comfortable staying in the cycle of Sapa, please click away. This is not for people who want to <strong>complain about the economy.</strong> This is for those who are ready to <em>hack it.</em></p>
+        </div>
+        <div class="founders-sign">
+          Regards,
+          <strong>Your Fellow in the Hustle 🤝 — Founder, SoftLife Career Bundle</strong>
+        </div>
+        <div class="founders-cta-wrap">
+          <div class="sapa-pill">⚠️ Still reading? You're already different from the rest.</div>
+          <br><br>
+          <button class="btn-primary" onclick="openModal('premium')" style="font-size:1.08rem;padding:18px 38px;">
+            😤 Hate Sapa? Break Free Here — ₦7,500
+          </button>
+          <br><br>
+          <button class="btn-ghost" onclick="openModal('starter')" style="margin-top:4px;">
+            Try the Starter Pack First — ₦3,500
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label"><span class="tag">Real People. Real Results.</span></div>
+    <h2 class="reveal">What Buyers Are Saying on WhatsApp</h2>
+    <p class="lead reveal">These are real WhatsApp messages from people who picked up the bundle and took action. Unfiltered.</p>
+
+    <div class="testi-grid">
+
+      <!-- TESTIMONIAL 1 — Emeka -->
+      <div class="wa-phone reveal">
+        <div class="wa-notch"><div class="wa-notch-cam"></div></div>
+        <div class="wa-screen">
+          <div class="wa-status-bar">
+            <span class="wa-status-time">9:41</span>
+            <div class="wa-status-icons">
+              <div class="wa-signal"><span></span><span></span><span></span><span></span></div>
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="white"><path d="M6.5 2.5C8.1 2.5 9.6 3.1 10.7 4.1L12 2.8C10.5 1.4 8.6.6 6.5.6S2.5 1.4 1 2.8L2.3 4.1C3.4 3.1 4.9 2.5 6.5 2.5zM6.5 5.5C7.5 5.5 8.4 5.9 9 6.6L10.3 5.3C9.3 4.4 8 3.9 6.5 3.9S3.7 4.4 2.7 5.3L4 6.6C4.6 5.9 5.5 5.5 6.5 5.5zM6.5 8.5C7.1 8.5 7.6 8.7 8 9.1L6.5 10.6 5 9.1C5.4 8.7 5.9 8.5 6.5 8.5z"/></svg>
+              <div class="wa-battery"><div class="wa-battery-fill"></div></div>
+            </div>
+          </div>
+          <div class="wa-header">
+            <div class="wa-back">‹</div>
+            <div class="wa-avatar">👨🏾</div>
+            <div class="wa-contact">
+              <div class="name">Emeka O.</div>
+              <div class="status">online</div>
+            </div>
+            <div class="wa-hdr-icons">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-date">Yesterday</div>
+            <div class="wa-msg them">
+              <div class="wa-bubble"><span class="wa-sender">Emeka O.</span>Boss I have to be honest, I was sceptical. I have bought things like this before and they were not useful at all. But this one is different.<span style="display:inline-block;width:52px"></span><span class="wa-time">10:14 AM</span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">The CV template alone saved me. I rewrote my CV yesterday using the ATS guide and I already got a response from a UK company this morning 😭🙏<span style="display:inline-block;width:52px"></span><span class="wa-time">10:15 AM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">This is exactly why I built it. You just needed the right format. Congratulations bro 💪<span style="display:inline-block;width:60px"></span><span class="wa-time">10:22 AM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">God bless you. I am sharing this with my friends. The ₦3,500 is too small for what you packed in here honestly<span style="display:inline-block;width:52px"></span><span class="wa-time">10:24 AM</span></div>
+            </div>
+          </div>
+          <div class="wa-footer">
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm0-18c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 7h3l-4 4-4-4h3V7h2v4z"/></svg></div>
+            <div class="wa-input">Type a message</div>
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.3.07-.61.07-.93 0-.32-.03-.62-.07-.93l2-1.57c.18-.14.23-.41.12-.61l-1.9-3.3c-.1-.2-.35-.26-.55-.2l-2.36.95c-.49-.38-1.01-.68-1.58-.91L14.5 2.6c-.04-.22-.25-.38-.5-.38h-3.8c-.25 0-.46.16-.5.38l-.36 2.38c-.57.23-1.09.53-1.58.91L5.9 4.89c-.2-.06-.45 0-.55.2l-1.9 3.3c-.12.2-.07.47.12.61l2 1.57c-.04.31-.07.62-.07.93 0 .31.03.62.07.93l-2 1.57c-.18.14-.23.41-.12.61l1.9 3.3c.1.2.35.26.55.2l2.36-.95c.49.38 1.01.68 1.58.91l.36 2.38c.04.22.25.38.5.38h3.8c.25 0 .46-.16.5-.38l.36-2.38c.57-.23 1.09-.53 1.58-.91l2.36.95c.2.06.45 0 .55-.2l1.9-3.3c.12-.2.07-.47-.12-.61l-2-1.57z"/></svg></div>
+            <div class="wa-send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></div>
+          </div>
+        </div>
+        <div class="wa-result-badge">✅ Recruiter response within 24 hrs of using the CV template</div>
+      </div>
+
+      <!-- TESTIMONIAL 2 — Chiamaka -->
+      <div class="wa-phone reveal">
+        <div class="wa-notch"><div class="wa-notch-cam"></div></div>
+        <div class="wa-screen">
+          <div class="wa-status-bar">
+            <span class="wa-status-time">9:41</span>
+            <div class="wa-status-icons">
+              <div class="wa-signal"><span></span><span></span><span></span><span></span></div>
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="white"><path d="M6.5 2.5C8.1 2.5 9.6 3.1 10.7 4.1L12 2.8C10.5 1.4 8.6.6 6.5.6S2.5 1.4 1 2.8L2.3 4.1C3.4 3.1 4.9 2.5 6.5 2.5zM6.5 5.5C7.5 5.5 8.4 5.9 9 6.6L10.3 5.3C9.3 4.4 8 3.9 6.5 3.9S3.7 4.4 2.7 5.3L4 6.6C4.6 5.9 5.5 5.5 6.5 5.5zM6.5 8.5C7.1 8.5 7.6 8.7 8 9.1L6.5 10.6 5 9.1C5.4 8.7 5.9 8.5 6.5 8.5z"/></svg>
+              <div class="wa-battery"><div class="wa-battery-fill"></div></div>
+            </div>
+          </div>
+          <div class="wa-header">
+            <div class="wa-back">‹</div>
+            <div class="wa-avatar">👩🏾</div>
+            <div class="wa-contact">
+              <div class="name">Chiamaka N.</div>
+              <div class="status">last seen today at 9:41 AM</div>
+            </div>
+            <div class="wa-hdr-icons">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-date">3 days ago</div>
+            <div class="wa-msg them">
+              <div class="wa-bubble"><span class="wa-sender">Chiamaka N.</span>Hello, I bought the premium bundle 3 weeks ago. I want to give you feedback.<span style="display:inline-block;width:52px"></span><span class="wa-time">8:03 PM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">Please go ahead! I love honest feedback 🙏<span style="display:inline-block;width:60px"></span><span class="wa-time">8:09 PM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">I used the cold email script to reach out to a Canadian startup on LinkedIn. I edited it a little and sent it. Two days later they scheduled a call with me.<span style="display:inline-block;width:52px"></span><span class="wa-time">8:10 PM</span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">The role is <strong>$1,200/month remote</strong>. I have never earned anything close to that in my life. I am still shaking 😭😭<span style="display:inline-block;width:52px"></span><span class="wa-time">8:11 PM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">Chiamaka!!!! 🎉🎉 You did the work, the bundle just gave you the tools. So proud of you!!<span style="display:inline-block;width:60px"></span><span class="wa-time">8:14 PM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+          </div>
+          <div class="wa-footer">
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm0-18c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 7h3l-4 4-4-4h3V7h2v4z"/></svg></div>
+            <div class="wa-input">Type a message</div>
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.3.07-.61.07-.93 0-.32-.03-.62-.07-.93l2-1.57c.18-.14.23-.41.12-.61l-1.9-3.3c-.1-.2-.35-.26-.55-.2l-2.36.95c-.49-.38-1.01-.68-1.58-.91L14.5 2.6c-.04-.22-.25-.38-.5-.38h-3.8c-.25 0-.46.16-.5.38l-.36 2.38c-.57.23-1.09.53-1.58.91L5.9 4.89c-.2-.06-.45 0-.55.2l-1.9 3.3c-.12.2-.07.47.12.61l2 1.57c-.04.31-.07.62-.07.93 0 .31.03.62.07.93l-2 1.57c-.18.14-.23.41-.12.61l1.9 3.3c.1.2.35.26.55.2l2.36-.95c.49.38 1.01.68 1.58.91l.36 2.38c.04.22.25.38.5.38h3.8c.25 0 .46-.16.5-.38l.36-2.38c.57-.23 1.09-.53 1.58-.91l2.36.95c.2.06.45 0 .55-.2l1.9-3.3c.12-.2.07-.47-.12-.61l-2-1.57z"/></svg></div>
+            <div class="wa-send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></div>
+          </div>
+        </div>
+        <div class="wa-result-badge">💵 $1,200/month remote role from one cold LinkedIn message</div>
+      </div>
+
+      <!-- TESTIMONIAL 3 — Tunde -->
+      <div class="wa-phone reveal">
+        <div class="wa-notch"><div class="wa-notch-cam"></div></div>
+        <div class="wa-screen">
+          <div class="wa-status-bar">
+            <span class="wa-status-time">9:41</span>
+            <div class="wa-status-icons">
+              <div class="wa-signal"><span></span><span></span><span></span><span></span></div>
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="white"><path d="M6.5 2.5C8.1 2.5 9.6 3.1 10.7 4.1L12 2.8C10.5 1.4 8.6.6 6.5.6S2.5 1.4 1 2.8L2.3 4.1C3.4 3.1 4.9 2.5 6.5 2.5zM6.5 5.5C7.5 5.5 8.4 5.9 9 6.6L10.3 5.3C9.3 4.4 8 3.9 6.5 3.9S3.7 4.4 2.7 5.3L4 6.6C4.6 5.9 5.5 5.5 6.5 5.5zM6.5 8.5C7.1 8.5 7.6 8.7 8 9.1L6.5 10.6 5 9.1C5.4 8.7 5.9 8.5 6.5 8.5z"/></svg>
+              <div class="wa-battery"><div class="wa-battery-fill"></div></div>
+            </div>
+          </div>
+          <div class="wa-header">
+            <div class="wa-back">‹</div>
+            <div class="wa-avatar">👨🏾‍💻</div>
+            <div class="wa-contact">
+              <div class="name">Tunde A.</div>
+              <div class="status">online</div>
+            </div>
+            <div class="wa-hdr-icons">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-date">Last week</div>
+            <div class="wa-msg them">
+              <div class="wa-bubble"><span class="wa-sender">Tunde A.</span>Bro I need to talk to you. I am a fresh graduate and I have been job hunting for <strong>8 months</strong>. Nothing. My parents were starting to lose hope in me.<span style="display:inline-block;width:52px"></span><span class="wa-time">7:30 PM</span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">I used the 30-day action plan in the premium bundle. Just finished week 2. I already have <strong>3 interviews lined up on Zoom this week</strong>. All remote positions.<span style="display:inline-block;width:52px"></span><span class="wa-time">7:31 PM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">See me seeing this at 7am and already smiling 😄 That plan works when you follow it exactly. Keep going, one of those 3 will close 💪<span style="display:inline-block;width:60px"></span><span class="wa-time">7:48 PM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">8 months of failure and now 3 interviews in 2 weeks. This is not a coincidence bro<span style="display:inline-block;width:52px"></span><span class="wa-time">7:50 PM</span></div>
+            </div>
+          </div>
+          <div class="wa-footer">
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm0-18c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 7h3l-4 4-4-4h3V7h2v4z"/></svg></div>
+            <div class="wa-input">Type a message</div>
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.3.07-.61.07-.93 0-.32-.03-.62-.07-.93l2-1.57c.18-.14.23-.41.12-.61l-1.9-3.3c-.1-.2-.35-.26-.55-.2l-2.36.95c-.49-.38-1.01-.68-1.58-.91L14.5 2.6c-.04-.22-.25-.38-.5-.38h-3.8c-.25 0-.46.16-.5.38l-.36 2.38c-.57.23-1.09.53-1.58.91L5.9 4.89c-.2-.06-.45 0-.55.2l-1.9 3.3c-.12.2-.07.47.12.61l2 1.57c-.04.31-.07.62-.07.93 0 .31.03.62.07.93l-2 1.57c-.18.14-.23.41-.12.61l1.9 3.3c.1.2.35.26.55.2l2.36-.95c.49.38 1.01.68 1.58.91l.36 2.38c.04.22.25.38.5.38h3.8c.25 0 .46-.16.5-.38l.36-2.38c.57-.23 1.09-.53 1.58-.91l2.36.95c.2.06.45 0 .55-.2l1.9-3.3c.12-.2.07-.47-.12-.61l-2-1.57z"/></svg></div>
+            <div class="wa-send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></div>
+          </div>
+        </div>
+        <div class="wa-result-badge">🎯 8 months no results → 3 interviews in 2 weeks</div>
+      </div>
+
+      <!-- TESTIMONIAL 4 — Blessing -->
+      <div class="wa-phone reveal">
+        <div class="wa-notch"><div class="wa-notch-cam"></div></div>
+        <div class="wa-screen">
+          <div class="wa-status-bar">
+            <span class="wa-status-time">9:41</span>
+            <div class="wa-status-icons">
+              <div class="wa-signal"><span></span><span></span><span></span><span></span></div>
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="white"><path d="M6.5 2.5C8.1 2.5 9.6 3.1 10.7 4.1L12 2.8C10.5 1.4 8.6.6 6.5.6S2.5 1.4 1 2.8L2.3 4.1C3.4 3.1 4.9 2.5 6.5 2.5zM6.5 5.5C7.5 5.5 8.4 5.9 9 6.6L10.3 5.3C9.3 4.4 8 3.9 6.5 3.9S3.7 4.4 2.7 5.3L4 6.6C4.6 5.9 5.5 5.5 6.5 5.5zM6.5 8.5C7.1 8.5 7.6 8.7 8 9.1L6.5 10.6 5 9.1C5.4 8.7 5.9 8.5 6.5 8.5z"/></svg>
+              <div class="wa-battery"><div class="wa-battery-fill"></div></div>
+            </div>
+          </div>
+          <div class="wa-header">
+            <div class="wa-back">‹</div>
+            <div class="wa-avatar">👩🏾‍🎓</div>
+            <div class="wa-contact">
+              <div class="name">Blessing I.</div>
+              <div class="status">last seen today at 2:15 PM</div>
+            </div>
+            <div class="wa-hdr-icons">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-date">Monday</div>
+            <div class="wa-msg them">
+              <div class="wa-bubble"><span class="wa-sender">Blessing I.</span>I was earning 45k naira monthly as a customer service agent. I used your freelance pricing guide and the outreach scripts to start pitching UK businesses.<span style="display:inline-block;width:52px"></span><span class="wa-time">1:06 PM</span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">I just closed my first client at <strong>£400/month</strong>. That is over ₦700,000. I am still crying in the bathroom right now 😭🙏 God bless whoever made this<span style="display:inline-block;width:52px"></span><span class="wa-time">1:07 PM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">Blessing!!! 🎉 Please eat food first before you faint 😂 Congratulations!! You deserve this completely. This is just the beginning!<span style="display:inline-block;width:60px"></span><span class="wa-time">1:15 PM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+          </div>
+          <div class="wa-footer">
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm0-18c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 7h3l-4 4-4-4h3V7h2v4z"/></svg></div>
+            <div class="wa-input">Type a message</div>
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.3.07-.61.07-.93 0-.32-.03-.62-.07-.93l2-1.57c.18-.14.23-.41.12-.61l-1.9-3.3c-.1-.2-.35-.26-.55-.2l-2.36.95c-.49-.38-1.01-.68-1.58-.91L14.5 2.6c-.04-.22-.25-.38-.5-.38h-3.8c-.25 0-.46.16-.5.38l-.36 2.38c-.57.23-1.09.53-1.58.91L5.9 4.89c-.2-.06-.45 0-.55.2l-1.9 3.3c-.12.2-.07.47.12.61l2 1.57c-.04.31-.07.62-.07.93 0 .31.03.62.07.93l-2 1.57c-.18.14-.23.41-.12.61l1.9 3.3c.1.2.35.26.55.2l2.36-.95c.49.38 1.01.68 1.58.91l.36 2.38c.04.22.25.38.5.38h3.8c.25 0 .46-.16.5-.38l.36-2.38c.57-.23 1.09-.53 1.58-.91l2.36.95c.2.06.45 0 .55-.2l1.9-3.3c.12-.2.07-.47-.12-.61l-2-1.57z"/></svg></div>
+            <div class="wa-send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></div>
+          </div>
+        </div>
+        <div class="wa-result-badge">🇬🇧 ₦45k/month → first £400/month client</div>
+      </div>
+
+      <!-- TESTIMONIAL 5 — Kayode -->
+      <div class="wa-phone reveal">
+        <div class="wa-notch"><div class="wa-notch-cam"></div></div>
+        <div class="wa-screen">
+          <div class="wa-status-bar">
+            <span class="wa-status-time">9:41</span>
+            <div class="wa-status-icons">
+              <div class="wa-signal"><span></span><span></span><span></span><span></span></div>
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="white"><path d="M6.5 2.5C8.1 2.5 9.6 3.1 10.7 4.1L12 2.8C10.5 1.4 8.6.6 6.5.6S2.5 1.4 1 2.8L2.3 4.1C3.4 3.1 4.9 2.5 6.5 2.5zM6.5 5.5C7.5 5.5 8.4 5.9 9 6.6L10.3 5.3C9.3 4.4 8 3.9 6.5 3.9S3.7 4.4 2.7 5.3L4 6.6C4.6 5.9 5.5 5.5 6.5 5.5zM6.5 8.5C7.1 8.5 7.6 8.7 8 9.1L6.5 10.6 5 9.1C5.4 8.7 5.9 8.5 6.5 8.5z"/></svg>
+              <div class="wa-battery"><div class="wa-battery-fill"></div></div>
+            </div>
+          </div>
+          <div class="wa-header">
+            <div class="wa-back">‹</div>
+            <div class="wa-avatar">👨🏾‍🦱</div>
+            <div class="wa-contact">
+              <div class="name">Kayode F.</div>
+              <div class="status">online</div>
+            </div>
+            <div class="wa-hdr-icons">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-date">5 days ago</div>
+            <div class="wa-msg them">
+              <div class="wa-bubble"><span class="wa-sender">Kayode F.</span>I almost didn't buy this because of the price. I thought it was going to be the usual motivational content with no practical value.<span style="display:inline-block;width:52px"></span><span class="wa-time">11:20 AM</span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">But the AI prompt pack alone is worth 10x the price. I used it to rewrite my LinkedIn and <strong>three recruiters reached out to me in one week</strong>. Without me applying anywhere.<span style="display:inline-block;width:52px"></span><span class="wa-time">11:21 AM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">This is what the LinkedIn blueprint does when you apply it properly. Inbound interest. No more begging. Proud of you bro 🙌<span style="display:inline-block;width:60px"></span><span class="wa-time">11:30 AM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">₦3,500 naira changed my job search completely. Recommend to every Nigerian looking for remote work. No cap.<span style="display:inline-block;width:52px"></span><span class="wa-time">11:32 AM</span></div>
+            </div>
+          </div>
+          <div class="wa-footer">
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm0-18c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 7h3l-4 4-4-4h3V7h2v4z"/></svg></div>
+            <div class="wa-input">Type a message</div>
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.3.07-.61.07-.93 0-.32-.03-.62-.07-.93l2-1.57c.18-.14.23-.41.12-.61l-1.9-3.3c-.1-.2-.35-.26-.55-.2l-2.36.95c-.49-.38-1.01-.68-1.58-.91L14.5 2.6c-.04-.22-.25-.38-.5-.38h-3.8c-.25 0-.46.16-.5.38l-.36 2.38c-.57.23-1.09.53-1.58.91L5.9 4.89c-.2-.06-.45 0-.55.2l-1.9 3.3c-.12.2-.07.47.12.61l2 1.57c-.04.31-.07.62-.07.93 0 .31.03.62.07.93l-2 1.57c-.18.14-.23.41-.12.61l1.9 3.3c.1.2.35.26.55.2l2.36-.95c.49.38 1.01.68 1.58.91l.36 2.38c.04.22.25.38.5.38h3.8c.25 0 .46-.16.5-.38l.36-2.38c.57-.23 1.09-.53 1.58-.91l2.36.95c.2.06.45 0 .55-.2l1.9-3.3c.12-.2.07-.47-.12-.61l-2-1.57z"/></svg></div>
+            <div class="wa-send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></div>
+          </div>
+        </div>
+        <div class="wa-result-badge">📩 3 recruiter inbounds in 1 week — without applying anywhere</div>
+      </div>
+
+      <!-- TESTIMONIAL 6 — Adaeze -->
+      <div class="wa-phone reveal">
+        <div class="wa-notch"><div class="wa-notch-cam"></div></div>
+        <div class="wa-screen">
+          <div class="wa-status-bar">
+            <span class="wa-status-time">9:41</span>
+            <div class="wa-status-icons">
+              <div class="wa-signal"><span></span><span></span><span></span><span></span></div>
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="white"><path d="M6.5 2.5C8.1 2.5 9.6 3.1 10.7 4.1L12 2.8C10.5 1.4 8.6.6 6.5.6S2.5 1.4 1 2.8L2.3 4.1C3.4 3.1 4.9 2.5 6.5 2.5zM6.5 5.5C7.5 5.5 8.4 5.9 9 6.6L10.3 5.3C9.3 4.4 8 3.9 6.5 3.9S3.7 4.4 2.7 5.3L4 6.6C4.6 5.9 5.5 5.5 6.5 5.5zM6.5 8.5C7.1 8.5 7.6 8.7 8 9.1L6.5 10.6 5 9.1C5.4 8.7 5.9 8.5 6.5 8.5z"/></svg>
+              <div class="wa-battery"><div class="wa-battery-fill"></div></div>
+            </div>
+          </div>
+          <div class="wa-header">
+            <div class="wa-back">‹</div>
+            <div class="wa-avatar">👩🏾‍💼</div>
+            <div class="wa-contact">
+              <div class="name">Adaeze M.</div>
+              <div class="status">last seen yesterday at 8:44 PM</div>
+            </div>
+            <div class="wa-hdr-icons">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-date">2 days ago</div>
+            <div class="wa-msg them">
+              <div class="wa-bubble"><span class="wa-sender">Adaeze M.</span>I want the premium because the cover letter template already got me <strong>2 responses from companies in Ireland and Canada</strong>. In 4 days. I applied to both of them yesterday.<span style="display:inline-block;width:52px"></span><span class="wa-time">3:23 PM</span></div>
+            </div>
+            <div class="wa-msg them">
+              <div class="wa-bubble">If the starter can do this much I cannot imagine what the premium will do 😄 Please I am upgrading now<span style="display:inline-block;width:52px"></span><span class="wa-time">3:24 PM</span></div>
+            </div>
+            <div class="wa-msg me">
+              <div class="wa-bubble">Let's go Adaeze!! 🔥 Applied yesterday, 2 responses today — that is what we work for. Sending upgrade link now!<span style="display:inline-block;width:60px"></span><span class="wa-time">3:28 PM <span class="wa-tick"><svg viewBox="0 0 16 11" fill="none"><path d="M1 5.5L5.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5L9.5 10 15 1" stroke="#53bdeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div>
+            </div>
+          </div>
+          <div class="wa-footer">
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm0-18c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 7h3l-4 4-4-4h3V7h2v4z"/></svg></div>
+            <div class="wa-input">Type a message</div>
+            <div class="wa-footer-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.3.07-.61.07-.93 0-.32-.03-.62-.07-.93l2-1.57c.18-.14.23-.41.12-.61l-1.9-3.3c-.1-.2-.35-.26-.55-.2l-2.36.95c-.49-.38-1.01-.68-1.58-.91L14.5 2.6c-.04-.22-.25-.38-.5-.38h-3.8c-.25 0-.46.16-.5.38l-.36 2.38c-.57.23-1.09.53-1.58.91L5.9 4.89c-.2-.06-.45 0-.55.2l-1.9 3.3c-.12.2-.07.47.12.61l2 1.57c-.04.31-.07.62-.07.93 0 .31.03.62.07.93l-2 1.57c-.18.14-.23.41-.12.61l1.9 3.3c.1.2.35.26.55.2l2.36-.95c.49.38 1.01.68 1.58.91l.36 2.38c.04.22.25.38.5.38h3.8c.25 0 .46-.16.5-.38l.36-2.38c.57-.23 1.09-.53 1.58-.91l2.36.95c.2.06.45 0 .55-.2l1.9-3.3c.12-.2.07-.47-.12-.61l-2-1.57z"/></svg></div>
+            <div class="wa-send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></div>
+          </div>
+        </div>
+        <div class="wa-result-badge">🌍 Ireland & Canada responses — on Starter Pack in 4 days</div>
+      </div>
+
+    </div><!-- /testi-grid -->
+  </div>
+</section>
+
+<!-- ═══ BUNDLE INTRODUCTION ═══ -->
+<section class="inside">
+
+  <div class="container">
+    <div class="section-label"><span class="tag">The Arsenal</span></div>
+    <h2 class="reveal">Everything Inside The Bundle</h2>
+    <p class="lead reveal">Two tiers. One mission — get you earning foreign currency from your Nigerian city.</p>
+    <div class="tier-tabs">
+      <button class="tier-tab active" onclick="switchTab('starter',this)">🟢 Starter Pack — ₦3,500</button>
+      <button class="tier-tab" onclick="switchTab('premium',this)">⭐ Premium Pack — ₦7,500</button>
+    </div>
+    <div class="features-panel active" id="panel-starter">
+      <div class="features-grid">
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>5 ATS-Optimized CV Templates</h4><p>Battle-tested formats designed to pass automated screening used by global companies.</p></div></div>
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>LinkedIn Profile Blueprint</h4><p>Word-for-word script to rewrite your LinkedIn so recruiters come to you.</p></div></div>
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>Remote Job Board Directory</h4><p>50+ curated platforms where Nigerian-friendly remote roles are posted every day.</p></div></div>
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>AI Prompt Pack (Resume Edition)</h4><p>40 prompts to tailor and supercharge your CV for any role in minutes.</p></div></div>
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>10 Cover Letter Templates</h4><p>Position-specific letters that actually get read instead of deleted.</p></div></div>
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>Remote Interview Prep Guide</h4><p>Top 30 interview questions with winning answer frameworks for each one.</p></div></div>
+      </div>
+    </div>
+    <div class="features-panel" id="panel-premium">
+      <div class="features-grid">
+        <div class="feature-item reveal"><div class="feature-check">✓</div><div><h4>Everything in Starter Pack</h4><p>All 6 Starter tools included and fully upgraded.</p></div></div>
+        <div class="feature-item reveal premium-extra"><div class="feature-check">⭐</div><div><h4>Cold DM & Email Outreach Scripts</h4><p>20 proven scripts to reach hiring managers and founders on LinkedIn, Twitter & email.</p></div></div>
+        <div class="feature-item reveal premium-extra"><div class="feature-check">⭐</div><div><h4>Freelance Pricing Calculator</h4><p>Know exactly what to charge global clients in USD, GBP, or EUR — and never undersell again.</p></div></div>
+        <div class="feature-item reveal premium-extra"><div class="feature-check">⭐</div><div><h4>AI Portfolio Builder Guide</h4><p>Build a compelling portfolio with zero coding — even if you have never had a paying client.</p></div></div>
+        <div class="feature-item reveal premium-extra"><div class="feature-check">⭐</div><div><h4>Payment Receipt Guide for Nigerians</h4><p>How to receive USD payments via Payoneer, Wise, and Grey — legally, without wahala.</p></div></div>
+        <div class="feature-item reveal premium-extra"><div class="feature-check">⭐</div><div><h4>30-Day Execution Action Plan</h4><p>Day-by-day roadmap. Follow it and you will have applied to 100+ quality roles in 30 days.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2 class="reveal">Pick Your Exit Ticket</h2>
+    <p class="lead reveal">One-time payment. Instant access. No monthly subscription. No renewal games.</p>
+    <div class="pricing-grid">
+      <!-- STARTER -->
+      <div class="price-card reveal">
+        <div class="price-tier">Starter Pack</div>
+        <div class="price-name">The Foundation</div>
+        <div class="price-amount"><span class="price-currency">₦</span><span class="price-value">3,500</span></div>
+        <p class="price-desc">Everything you need to break through the ATS wall and land in a recruiter's inbox.</p>
+        <ul class="price-features">
+          <li>5 ATS-Optimized CV Templates</li>
+          <li>LinkedIn Profile Rewrite Blueprint</li>
+          <li>50+ Remote Job Board Directory</li>
+          <li>40 AI Resume Prompt Pack</li>
+          <li>10 Cover Letter Templates</li>
+          <li>Remote Interview Prep Guide (30 Qs)</li>
+          <li>Instant Google Drive Download</li>
+        </ul>
+        <button class="btn-ghost btn-block" onclick="openModal('starter')">Get Starter Pack — ₦3,500</button>
+      </div>
+      <!-- PREMIUM -->
+      <div class="price-card featured reveal">
+        <div class="price-badge">🔥 Most Popular</div>
+        <div class="price-tier">Premium Pack</div>
+        <div class="price-name">The Full Arsenal</div>
+        <div class="price-amount"><span class="price-currency">₦</span><span class="price-value">7,500</span></div>
+        <p class="price-desc">The complete offensive toolkit — from outreach to closing your first foreign client or employer.</p>
+        <ul class="price-features">
+          <li>Everything in Starter Pack (all 6 tools)</li>
+          <li>20 Cold DM & Email Outreach Scripts</li>
+          <li>Freelance Pricing Calculator (USD/GBP)</li>
+          <li>AI-Powered Portfolio Builder Guide</li>
+          <li>Nigerian Remote Payment Receipt Guide</li>
+          <li>30-Day Execution Action Plan</li>
+          <li>Instant Google Drive Download</li>
+        </ul>
+        <button class="btn-primary btn-block" onclick="openModal('premium')">😤 Hate Sapa? Break Free — ₦7,500</button>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:.8rem;margin-top:26px;">
+      🔒 Paystack Secured &nbsp;|&nbsp; ⚡ Instant Google Drive Access &nbsp;|&nbsp; 📲 Works on All Devices
+    </p>
+  </div>
+</section>
+
+<!-- ═══ GUARANTEE ═══ -->
+<section class="guarantee">
+  <div class="container">
+    <div class="guarantee-box reveal">
+      <div class="guarantee-icon">🛡️</div>
+      <h3>Zero-Risk. 7-Day Guarantee.</h3>
+      <p>Go through the bundle. If you feel it was not worth your money, reach out within 7 days and we will make it right. You have already survived enough Sapa — we are not adding to it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="reveal">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I receive the bundle after payment? <span class="arrow">▼</span></button>
+        <div class="faq-a">Immediately after your Paystack payment is confirmed, you are automatically redirected to a private Google Drive link with your bundle files. No waiting, no email verification — access is instant.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is this useful for someone without work experience? <span class="arrow">▼</span></button>
+        <div class="faq-a">Absolutely. The bundle includes a section on building a portfolio from scratch and framing academic, volunteer, and personal projects as professional achievements for global employers. It is beginner-friendly by design.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What industries does this work for? <span class="arrow">▼</span></button>
+        <div class="faq-a">The templates and scripts are industry-agnostic and work across tech, digital marketing, design, customer support, project management, writing, finance, and more. If the role can be done remotely, this toolkit applies.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the difference between Starter and Premium? <span class="arrow">▼</span></button>
+        <div class="faq-a">Starter gives you a powerful foundation — resume templates, LinkedIn blueprint, job board directory, AI prompts, cover letters, and interview prep. Premium adds the offensive layer: cold outreach scripts, freelance pricing, portfolio building, payment guides, and a 30-day action plan. If you are serious, go Premium.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I pay with a Nigerian bank card or USSD? <span class="arrow">▼</span></button>
+        <div class="faq-a">Yes. We use Paystack which accepts all major Nigerian debit cards, bank transfers, and USSD payments — GTBank, Access, Zenith, First Bank, UBA, and more. It is fast and fully secure.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is this a course or a digital download? <span class="arrow">▼</span></button>
+        <div class="faq-a">It is a downloadable digital toolkit — templates, guides, prompt packs, and scripts in editable and PDF formats. No videos to sit through. You get straight to implementing immediately.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">STOP BEGGING<br>FOR <span>LOCAL CRUMBS.</span></h2>
+    <p class="reveal">Your exit ticket is right here. The tools are packed. The scripts are written. The plan is ready. The only question left is — are you?</p>
+    <div class="hero-cta-wrap">
+      <button class="btn-primary" onclick="openModal('premium')" style="font-size:1.1rem;padding:18px 40px;">
+        😤 Hate Sapa? Break Free — ₦7,500
+      </button>
+      <button class="btn-ghost" onclick="openModal('starter')" style="color:#fff;border-color:rgba(255,255,255,.25);">
+        Starter Pack — ₦3,500
+      </button>
+    </div>
+    <p style="margin-top:22px;color:rgba(255,255,255,.4);font-size:.78rem;">🔒 Paystack Secured &nbsp;•&nbsp; ⚡ Instant Download &nbsp;•&nbsp; 🛡️ 7-Day Guarantee</p>
+  </div>
+</section>
+
+<!-- ═══ CONTACT STRIP ═══ -->
+<div class="contact-strip">
+  <h3>Got Questions Before You Buy?</h3>
+  <p>We are real people and we are happy to help. Reach us directly below.</p>
+  <div class="contact-btns">
+    <a href="https://wa.me/2349034993452" target="_blank" class="btn-wa">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <a href="mailto:sellitng16@gmail.com" class="btn-ghost" style="text-decoration:none;">
+      ✉️ sellitng16@gmail.com
+    </a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <p><strong style="color:rgba(255,255,255,.7)">SoftLife Career Bundle</strong> — The Complete Remote Job Toolkit for Nigerians</p>
+    <p style="margin-top:8px;">WhatsApp: <a href="https://wa.me/2349034993452">+234 903 499 3452</a> &nbsp;|&nbsp; Email: <a href="mailto:sellitng16@gmail.com">sellitng16@gmail.com</a></p>
+    <p style="margin-top:12px; opacity:.4; font-size:.7rem;">© 2025 SoftLife Career Bundle. All rights reserved. This is a digital product — access is granted upon confirmed payment. All sales are final.</p>
+  </div>
+</footer>
+
+<!-- ═══ PAYMENT MODAL ═══ -->
+<div class="modal-overlay" id="emailModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modalTitle">Almost there! 🚀</h3>
+    <p id="modalDesc">Enter your email to get instant download access after payment.</p>
+    <label for="buyerEmail">Your Email Address</label>
+    <input type="email" id="buyerEmail" placeholder="yourname@gmail.com" />
+    <button class="btn-primary btn-block" onclick="initiatePayment()">Proceed to Secure Payment →</button>
+    <p class="modal-note">🔒 Secured by Paystack &nbsp;|&nbsp; ⚡ Instant access after payment</p>
+  </div>
+</div>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+  /* ─── CONFIG — replace these 4 values ─── */
+  const CONFIG = {
+    paystackPublicKey: 'YOUR_PAYSTACK_PUBLIC_KEY',
+    starter: {
+      amount:    350000,
+      label:     'SoftLife Starter Pack',
+      driveLink: 'YOUR_STARTER_GOOGLE_DRIVE_LINK'
+    },
+    premium: {
+      amount:    750000,
+      label:     'SoftLife Premium Pack',
+      driveLink: 'YOUR_PREMIUM_GOOGLE_DRIVE_LINK'
+    }
+  };
+
+  let currentTier = 'starter';
+
+  function openModal(tier) {
+    currentTier = tier;
+    document.getElementById('modalTitle').textContent =
+      tier === 'premium' ? '🔥 Premium Pack — ₦7,500' : '✅ Starter Pack — ₦3,500';
+    document.getElementById('buyerEmail').value = '';
+    document.getElementById('emailModal').classList.add('open');
+    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', {
+      value: CONFIG[tier].amount / 100, currency: 'NGN'
+    });
+  }
+
+  function closeModal() {
+    document.getElementById('emailModal').classList.remove('open');
+  }
+
+  document.getElementById('emailModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function initiatePayment() {
+    const email = document.getElementById('buyerEmail').value.trim();
+    const inp = document.getElementById('buyerEmail');
+    if (!email || !email.includes('@')) {
+      inp.style.borderColor = '#dc2626';
+      inp.focus();
+      setTimeout(() => inp.style.borderColor = '', 1600);
+      return;
+    }
+    const tier = CONFIG[currentTier];
+    const ref  = 'SLB_' + currentTier.toUpperCase() + '_' + Date.now();
+    const handler = PaystackPop.setup({
+      key: CONFIG.paystackPublicKey,
+      email, amount: tier.amount, currency: 'NGN', ref,
+      metadata: { custom_fields: [{ display_name: 'Bundle Tier', variable_name: 'tier', value: currentTier }] },
+      onClose() {},
+      callback(response) {
+        if (typeof fbq !== 'undefined') fbq('track', 'Purchase', {
+          value: tier.amount / 100, currency: 'NGN', content_name: tier.label
+        });
+        window.location.href = tier.driveLink;
+      }
+    });
+    handler.openIframe();
+    closeModal();
+  }
+
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tier-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.features-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + name).classList.add('active');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* Scroll reveal */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* Progress bar */
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  /* Hide sticky bar when pricing section is visible */
+  const pricingEl = document.getElementById('pricing');
+  if (pricingEl) {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        document.getElementById('stickyBar').style.opacity = e.isIntersecting ? '0' : '1';
+        document.getElementById('stickyBar').style.pointerEvents = e.isIntersecting ? 'none' : 'all';
+      });
+    }).observe(pricingEl);
+  }
+</script>
+
+</body>
+</html>
