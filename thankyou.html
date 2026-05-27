@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You're In! — SoftLife Career Bundle</title>
+ 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ 
+  <!-- ═══ META / FACEBOOK PIXEL ═══ -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '876645665454475');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- ═══ END META PIXEL ═══ -->
+ 
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --bg:         #f7f5f0;
+      --white:      #ffffff;
+      --surface:    #eef0eb;
+      --dark:       #111a14;
+      --text:       #1e2820;
+      --muted:      #6b7a70;
+      --green:      #1a9c4e;
+      --green-lt:   #e8f5ed;
+      --green-mid:  #d0eedd;
+      --green-glow: rgba(26,156,78,0.18);
+      --gold:       #d97706;
+      --gold-lt:    #fef3c7;
+      --border:     #dde5d8;
+      --radius:     14px;
+      --red:        #dc2626;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+ 
+    /* ════════════ STATES ════════════ */
+    .state { display: none; }
+    .state.active { display: block; }
+ 
+    /* ════════════ LOADING ════════════ */
+    #state-loading {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+      background: var(--bg);
+    }
+    #state-loading.active { display: flex; }
+ 
+    .spinner-wrap { position: relative; width: 72px; height: 72px; }
+    .spinner-ring {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      border-top-color: var(--green);
+      animation: spin 0.85s linear infinite;
+    }
+    .spinner-dot {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 14px; height: 14px;
+      background: var(--green);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: pulse 0.85s ease-in-out infinite alternate;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse { from { transform: translate(-50%,-50%) scale(0.7); opacity:0.4; } to { transform: translate(-50%,-50%) scale(1.1); opacity:1; } }
+ 
+    .loading-label {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .loading-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+    .loading-step {
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .loading-step.show { opacity: 1; transform: translateY(0); }
+    .loading-step.done { color: var(--green); }
+    .loading-step.done::before { content: '✓ '; }
+ 
+    /* ════════════ INVALID ════════════ */
+    #state-invalid {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    #state-invalid.active { display: flex; }
+    .invalid-icon { font-size: 64px; }
+    .invalid-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--red);
+      letter-spacing: 0.04em;
+    }
+    .invalid-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.7;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--green);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 0.75; }
+ 
+    /* ════════════ SUCCESS PAGE ════════════ */
+    #state-success { display: none; }
+    #state-success.active { display: block; }
+ 
+    /* ─── Confetti canvas (behind everything) ─── */
+    #confetti-canvas {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+ 
+    /* ─── TOP BANNER ─── */
+    .success-topbar {
+      position: relative; z-index: 10;
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 13px 20px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .topbar-badge {
+      background: rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 2px 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+ 
+    /* ─── HERO AREA ─── */
+    .success-hero {
+      position: relative; z-index: 5;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 72px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .success-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 50% 0%, var(--green-glow), transparent 70%);
+      pointer-events: none;
+    }
+ 
+    /* Animated success ring */
+    .success-ring {
+      width: 108px; height: 108px;
+      border-radius: 50%;
+      background: var(--green-lt);
+      border: 2.5px solid var(--green);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 32px;
+      position: relative;
+      animation: ringPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .success-ring::after {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 50%;
+      border: 2px solid var(--green-mid);
+      animation: ringExpand 1.2s ease-out 0.4s both;
+    }
+    @keyframes ringPop { from { opacity:0; transform: scale(0.4); } to { opacity:1; transform: scale(1); } }
+    @keyframes ringExpand { from { opacity:1; transform: scale(1); } to { opacity:0; transform: scale(1.6); } }
+    .success-ring .ring-icon { font-size: 46px; }
+ 
+    .success-eyebrow {
+      display: inline-block;
+      background: var(--green-lt);
+      color: var(--green);
+      border: 1px solid #b8dfc8;
+      border-radius: 100px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      margin-bottom: 20px;
+      animation: fadeUp 0.5s 0.25s ease both;
+    }
+ 
+    .success-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 9vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      color: var(--dark);
+      margin-bottom: 18px;
+      animation: fadeUp 0.55s 0.35s ease both;
+    }
+    .success-title em { font-style: normal; color: var(--green); }
+ 
+    .success-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 8px;
+      animation: fadeUp 0.55s 0.45s ease both;
+    }
+    .success-sub strong { color: var(--dark); }
+ 
+    .buyer-name-line {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 28px;
+      animation: fadeUp 0.5s 0.5s ease both;
+    }
+ 
+    .ref-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 52px;
+      animation: fadeUp 0.5s 0.55s ease both;
+    }
+    .ref-pill strong { color: var(--text); font-family: 'Outfit', monospace; }
+ 
+    /* ─── TIER BADGE ─── */
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 18px;
+      border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 52px;
+      animation: fadeUp 0.5s 0.55s ease both;
+    }
+    .tier-badge.starter {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+    .tier-badge.premium {
+      background: var(--gold-lt);
+      border: 1.5px solid #fcd34d;
+      color: #92400e;
+    }
+ 
+    /* ─── DOWNLOAD CARD ─── */
+    .download-card {
+      background: var(--white);
+      border: 2px solid var(--green);
+      border-radius: 20px;
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto 52px;
+      overflow: hidden;
+      box-shadow: 0 0 0 6px var(--green-lt), 0 20px 60px rgba(26,156,78,0.12);
+      animation: fadeUp 0.55s 0.6s ease both;
+    }
+    .download-card-head {
+      background: var(--green);
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dl-book-icon {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .dl-head-text h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .dl-head-text p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.78);
+    }
+ 
+    .download-card-body { padding: 28px; }
+ 
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      background: var(--green);
+      color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 18px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(26,156,78,0.3);
+    }
+    .download-btn:hover {
+      background: #158041;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(26,156,78,0.4);
+    }
+    .download-btn .btn-icon { font-size: 22px; }
+ 
+    .download-hints {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dl-hint {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-align: left;
+    }
+    .dl-hint-icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--green-lt);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      margin-top: 1px;
+    }
+ 
+    /* ─── WHAT'S NEXT STEPS ─── */
+    .next-section {
+      max-width: 760px;
+      margin: 0 auto 64px;
+      animation: fadeUp 0.55s 0.7s ease both;
+      text-align: left;
+    }
+    .next-section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .next-section-head h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      color: var(--dark);
+    }
+    .next-section-head .head-icon {
+      width: 42px; height: 42px;
+      background: var(--green-lt);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+ 
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .step-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .step-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 4px 20px rgba(26,156,78,0.1);
+    }
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--green-mid);
+      margin-bottom: 10px;
+    }
+    .step-card h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .step-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+ 
+    /* ─── SHARE SECTION ─── */
+    .share-section {
+      max-width: 560px;
+      margin: 0 auto 80px;
+      text-align: center;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      animation: fadeUp 0.5s 0.75s ease both;
+    }
+    .share-section h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .share-section p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 14px 26px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .share-btn:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .share-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+ 
+    /* ─── SUPPORT BAR ─── */
+    .support-bar {
+      position: relative; z-index: 5;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .support-bar p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .support-bar p strong { color: var(--dark); }
+    .support-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .support-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1.5px solid #b8dfc8;
+      padding: 9px 18px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .support-link:hover { background: var(--green-lt); }
+ 
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative; z-index: 5;
+      background: var(--dark);
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+    }
+    footer a { color: #7ee8a2; text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.7); }
+ 
+    /* ════════════ ANIMATIONS ════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    /* ════════════ RESPONSIVE ════════════ */
+    @media (max-width: 600px) {
+      .success-hero { padding: 56px 20px 52px; }
+      .download-card-head { padding: 18px 20px; }
+      .download-card-body { padding: 22px 20px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .next-section { text-align: center; }
+    }
+    @media (max-width: 400px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- ═══ LOADING STATE ═══ -->
+<div id="state-loading" class="state active">
+  <div class="spinner-wrap">
+    <div class="spinner-ring"></div>
+    <div class="spinner-dot"></div>
+  </div>
+  <div class="loading-steps">
+    <div class="loading-step" id="ls-1">Verifying payment reference…</div>
+    <div class="loading-step" id="ls-2">Confirming bundle tier…</div>
+    <div class="loading-step" id="ls-3">Preparing your download access…</div>
+  </div>
+</div>
+ 
+<!-- ═══ INVALID STATE ═══ -->
+<div id="state-invalid" class="state">
+  <div class="invalid-icon">🚫</div>
+  <div class="invalid-title">Access Denied</div>
+  <p class="invalid-sub">
+    This page is only accessible after a confirmed payment. If you've already paid and are seeing this in error, please contact us with your payment reference number.
+  </p>
+  <a href="index.html" class="back-link">← Go back and complete your purchase</a>
+</div>
+ 
+<!-- ═══ SUCCESS STATE ═══ -->
+<div id="state-success" class="state">
+ 
+  <canvas id="confetti-canvas"></canvas>
+ 
+  <!-- TOP BANNER -->
+  <div class="success-topbar">
+    <span class="topbar-badge">✅ Confirmed</span>
+    Payment successful — your access is ready right now!
+  </div>
+ 
+  <!-- HERO -->
+  <div class="success-hero">
+    <div style="position:relative;z-index:2;">
+ 
+      <div class="success-ring">
+        <span class="ring-icon">🎉</span>
+      </div>
+ 
+      <div class="success-eyebrow">Order Complete</div>
+ 
+      <h1 class="success-title">
+        YOU'RE<br><em>IN THE GAME</em><br>NOW.
+      </h1>
+ 
+      <p class="success-sub">
+        Welcome, <strong id="buyer-first-name">friend</strong>. Your SoftLife bundle is live and waiting.
+      </p>
+ 
+      <div class="buyer-name-line" id="buyer-full-line" style="display:none;">
+        Access granted for <span id="buyer-name-display"></span>
+      </div>
+ 
+      <div id="tier-badge-wrap" style="margin-bottom:0;">
+        <span class="tier-badge starter" id="tier-badge">🟢 Starter Pack</span>
+      </div>
+ 
+      <br>
+ 
+      <div class="ref-pill">
+        Payment Ref: <strong id="ref-display">—</strong>
+      </div>
+ 
+      <!-- ─── DOWNLOAD CARD ─── -->
+      <div class="download-card">
+        <div class="download-card-head">
+          <div class="dl-book-icon" id="dl-book-emoji">📁</div>
+          <div class="dl-head-text">
+            <h3 id="dl-card-title">SoftLife Career Bundle</h3>
+            <p id="dl-card-sub">Google Drive Folder · Instant Access · All Files Included</p>
+          </div>
+        </div>
+        <div class="download-card-body">
+          <a class="download-btn" id="download-link" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon">⬇️</span>
+            Open Your Bundle on Google Drive
+          </a>
+          <div class="download-hints">
+            <div class="dl-hint">
+              <div class="dl-hint-icon">📌</div>
+              <span><strong>Save it now.</strong> Add the folder to your own Google Drive or download the files to your device so you never lose access.</span>
+            </div>
+            <div class="dl-hint">
+              <div class="dl-hint-icon">📧</div>
+              <span>A payment receipt has been sent to your email by <strong>Paystack</strong>. Keep it as proof of purchase.</span>
+            </div>
+            <div class="dl-hint">
+              <div class="dl-hint-icon">💬</div>
+              <span>Trouble opening the link? WhatsApp us with your payment reference above — we will sort you out immediately.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- ─── WHAT'S NEXT ─── -->
+      <div class="next-section">
+        <div class="next-section-head">
+          <div class="head-icon">🚀</div>
+          <h2>Your 4-Step Launch Plan — Start Today</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h4>Save Your Files</h4>
+            <p>Open the Drive folder and "Add to My Drive" so you have permanent access on any device.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h4>Start With Your CV</h4>
+            <p>Pick one ATS template, open the AI Prompt Pack, and rewrite your resume in the next 2 hours.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h4>Fix Your LinkedIn</h4>
+            <p>Apply the LinkedIn Blueprint script word-for-word. This alone has generated inbound recruiter DMs.</p>
+          </div>
+          <div class="step-card" id="step-4-card">
+            <div class="step-num">04</div>
+            <h4 id="step-4-title">Apply & Outreach</h4>
+            <p id="step-4-body">Use the Job Board Directory and Cover Letter Templates to hit 10 applications today. Don't overthink — ship it.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- ─── SHARE ─── -->
+      <div class="share-section">
+        <h3>Know someone stuck in the cycle? 🤝</h3>
+        <p>Share this with a friend who deserves to break free too. One share could change their life.</p>
+        <a class="share-btn"
+           href="https://wa.me/?text=Bro%2FBabes%2C%20I%20just%20got%20the%20SoftLife%20Career%20Bundle%20and%20it%20is%20PACKED.%20If%20you%20are%20looking%20for%20remote%20work%20or%20foreign%20clients%20from%20Nigeria%2C%20check%20this%20out%3A%20%5BPASTE%20YOUR%20LINK%20HERE%5D"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Share on WhatsApp
+        </a>
+      </div>
+ 
+    </div>
+  </div><!-- /success-hero -->
+ 
+  <!-- SUPPORT BAR -->
+  <div class="support-bar">
+    <p><strong>Need help?</strong> We are real people and will respond fast.</p>
+    <div class="support-links">
+      <a href="https://wa.me/2349034993452" target="_blank" class="support-link">
+        💬 WhatsApp Us
+      </a>
+      <a href="mailto:sellitng16@gmail.com" class="support-link">
+        ✉️ sellitng16@gmail.com
+      </a>
+    </div>
+  </div>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>SoftLife Career Bundle</strong> — The Complete Remote Job Toolkit for Nigerians 🇳🇬</p>
+    <p style="margin-top:8px;">
+      WhatsApp: <a href="https://wa.me/2349034993452">+234 903 499 3452</a>
+      &nbsp;|&nbsp;
+      Email: <a href="mailto:sellitng16@gmail.com">sellitng16@gmail.com</a>
+    </p>
+    <p style="margin-top:12px;opacity:0.4;font-size:0.7rem;">
+      © 2025 SoftLife Career Bundle. All rights reserved. Digital product — access is granted upon confirmed payment.
+    </p>
+  </footer>
+ 
+</div><!-- /state-success -->
+ 
+ 
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+  /* ─────────────────────────────────────
+     CONFIGURATION — Drive links per tier
+     Replace these with your actual links
+  ───────────────────────────────────── */
+  const DRIVE_LINKS = {
+    starter: 'https://drive.google.com/drive/folders/1_xW1qTIQ85gMUEzO2KdfkWYaCwBvJltJ?usp=drive_link',
+    premium: 'https://drive.google.com/drive/folders/1ZrHt9TjwFDXTUD7qTGqEz2YY0PV4zHQ9?usp=drive_link'
+  };
+ 
+  /* ─── Tier display config ─── */
+  const TIER_CONFIG = {
+    starter: {
+      label:      '🟢 Starter Pack · ₦3,500',
+      badgeClass: 'starter',
+      cardTitle:  'SoftLife Starter Pack',
+      cardSub:    'Google Drive Folder · 6 Tools · Instant Access',
+      bookEmoji:  '📗',
+      pixelValue: 3500,
+      step4Title: 'Apply With Confidence',
+      step4Body:  'Use the Job Board Directory and Cover Letter Templates to hit 10+ applications today. Momentum matters.'
+    },
+    premium: {
+      label:      '⭐ Premium Pack · ₦7,500',
+      badgeClass: 'premium',
+      cardTitle:  'SoftLife Premium Pack — Full Arsenal',
+      cardSub:    'Google Drive Folder · 12 Tools · Instant Access',
+      bookEmoji:  '📘',
+      pixelValue: 7500,
+      step4Title: 'Launch Cold Outreach',
+      step4Body:  'Start the 30-Day Action Plan today. Use the Cold DM Scripts to contact 5 hiring managers or founders right now.'
+    }
+  };
+ 
+  /* ─── Helpers ─── */
+  function getParams() {
+    const p = new URLSearchParams(window.location.search);
+    return {
+      ref:   p.get('ref') || p.get('reference') || '',
+      name:  p.get('name')  || '',
+      email: p.get('email') || '',
+      tier:  (p.get('tier') || 'starter').toLowerCase()
+    };
+  }
+ 
+  function showState(id) {
+    document.querySelectorAll('.state').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+ 
+  function isValidRef(ref) {
+    return ref && ref.length >= 6;
+  }
+ 
+  /* ─── Loading sequence ─── */
+  function runLoadingSteps(callback) {
+    const steps = ['ls-1','ls-2','ls-3'];
+    let i = 0;
+    function next() {
+      if (i > 0) document.getElementById(steps[i-1]).classList.add('done');
+      if (i < steps.length) {
+        document.getElementById(steps[i]).classList.add('show');
+        i++;
+        setTimeout(next, 600);
+      } else {
+        setTimeout(callback, 400);
+      }
+    }
+    next();
+  }
+ 
+  /* ─── Confetti ─── */
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+ 
+    const colors = ['#1a9c4e','#d0eedd','#d97706','#fef3c7','#fff','#7ee8a2','#fcd34d'];
+    const pieces = Array.from({ length: 120 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      r: Math.random() * 7 + 4,
+      d: Math.random() * 2 + 1,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10 - 5,
+      tiltSpeed: Math.random() * 0.1 + 0.05,
+      spin: 0
+    }));
+ 
+    let frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.spin += p.tiltSpeed;
+        p.y += p.d + Math.sin(frame * 0.02 + p.x) * 0.5;
+        p.x += Math.sin(frame * 0.01 + p.y * 0.01) * 0.8;
+        p.tilt = Math.sin(p.spin) * 12;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.tilt * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 1.4);
+        ctx.restore();
+        if (p.y > canvas.height + 20) {
+          p.y = -20; p.x = Math.random() * canvas.width;
+        }
+      });
+      frame++;
+      if (frame < 220) requestAnimationFrame(draw);
+      else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'none';
+      }
+    }
+    draw();
+  }
+ 
+  /* ─── MAIN INIT ─── */
+  window.addEventListener('DOMContentLoaded', function () {
+    runLoadingSteps(function () {
+      const { ref, name, email, tier } = getParams();
+ 
+      if (!isValidRef(ref)) {
+        showState('state-invalid');
+        return;
+      }
+ 
+      /* ── Determine tier (fallback to starter) ── */
+      const tierKey    = TIER_CONFIG[tier] ? tier : 'starter';
+      const tierData   = TIER_CONFIG[tierKey];
+      const driveLink  = DRIVE_LINKS[tierKey];
+ 
+      /* ── Populate buyer name ── */
+      const decodedName = name ? decodeURIComponent(name).trim() : '';
+      const firstName   = decodedName ? decodedName.split(' ')[0] : 'friend';
+      document.getElementById('buyer-first-name').textContent = firstName;
+      if (decodedName) {
+        document.getElementById('buyer-name-display').textContent = decodedName;
+        document.getElementById('buyer-full-line').style.display = 'block';
+      }
+ 
+      /* ── Ref display ── */
+      document.getElementById('ref-display').textContent = ref;
+ 
+      /* ── Tier badge ── */
+      const badge = document.getElementById('tier-badge');
+      badge.textContent   = tierData.label;
+      badge.className     = 'tier-badge ' + tierData.badgeClass;
+ 
+      /* ── Download card ── */
+      document.getElementById('dl-book-emoji').textContent = tierData.bookEmoji;
+      document.getElementById('dl-card-title').textContent = tierData.cardTitle;
+      document.getElementById('dl-card-sub').textContent   = tierData.cardSub;
+      document.getElementById('download-link').href        = driveLink;
+ 
+      /* ── Step 4 (tier-aware) ── */
+      document.getElementById('step-4-title').textContent = tierData.step4Title;
+      document.getElementById('step-4-body').textContent  = tierData.step4Body;
+ 
+      /* ── Show success state ── */
+      showState('state-success');
+ 
+      /* ── Confetti 🎉 ── */
+      setTimeout(launchConfetti, 300);
+ 
+      /* ── Facebook Purchase event ── */
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Purchase', {
+          value:        tierData.pixelValue,
+          currency:     'NGN',
+          content_name: tierData.cardTitle,
+          content_type: 'product',
+          content_ids:  ['softlife-' + tierKey]
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
