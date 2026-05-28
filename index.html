@@ -1646,7 +1646,12 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
         if (typeof fbq !== 'undefined') fbq('track', 'Purchase', {
           value: tier.amount / 100, currency: 'NGN', content_name: tier.label
         });
-        window.location.href = tier.driveLink;
+        // Redirect to thank you page, passing tier and drive link as URL params
+        const params = new URLSearchParams({
+          tier: currentTier,
+          link: tier.driveLink
+        });
+        window.location.href = 'thankyou.html?' + params.toString();
       }
     });
     handler.openIframe();
