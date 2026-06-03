@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoftLife Career Bundle — Remote Job Toolkit for Nigerians</title>
 
-  <!-- FACEBOOK PIXEL — Replace YOUR_PIXEL_ID -->
-  <!-- Meta Pixel Code -->
+  <!-- FACEBOOK PIXEL -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -22,7 +21,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
 
   <!-- Paystack -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -443,7 +441,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
         0 8px 20px rgba(0,0,0,.25);
     }
 
-    /* Camera notch */
     .wa-notch {
       width: 90px; height: 22px;
       background: #1a1a1a;
@@ -459,7 +456,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       box-shadow: inset 0 0 0 2px #1a1a1a, inset 0 0 0 3px #2d2d2d;
     }
 
-    /* Screen wrapper */
     .wa-screen {
       background: #fff;
       border-radius: 22px;
@@ -467,7 +463,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       position: relative;
     }
 
-    /* Status bar */
     .wa-status-bar {
       background: #075E54;
       padding: 5px 14px 3px;
@@ -505,7 +500,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       border-radius: 1px; margin: 0 1px;
     }
 
-    /* WA Header */
     .wa-header {
       background: #075E54;
       padding: 8px 12px 10px;
@@ -541,7 +535,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
     }
     .wa-hdr-icons svg { width: 18px; height: 18px; fill: currentColor; }
 
-    /* WA Wallpaper chat body */
     .wa-body {
       background-color: #e5ddd5;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c8bdb5' stroke-width='.6' opacity='.5'%3E%3Cpath d='M20 10 Q40 0 60 10 Q80 20 60 30 Q40 40 20 30 Q0 20 20 10Z'/%3E%3Cpath d='M20 50 Q40 40 60 50 Q80 60 60 70 Q40 80 20 70 Q0 60 20 50Z'/%3E%3C/g%3E%3C/svg%3E");
@@ -550,7 +543,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       display: flex; flex-direction: column; gap: 3px;
     }
 
-    /* Date pill */
     .wa-date {
       text-align: center;
       background: rgba(255,255,255,.75);
@@ -565,7 +557,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       box-shadow: 0 1px 1px rgba(0,0,0,.06);
     }
 
-    /* Message rows */
     .wa-msg {
       display: flex;
       flex-direction: column;
@@ -575,7 +566,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
     .wa-msg.them { align-self: flex-start; padding-left: 6px; }
     .wa-msg.me   { align-self: flex-end;   padding-right: 6px; }
 
-    /* Bubble tails via clip-path pseudo */
     .wa-bubble {
       border-radius: 7.5px;
       padding: 6px 9px 4px;
@@ -586,7 +576,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       font-family: -apple-system, 'Helvetica Neue', sans-serif;
     }
 
-    /* "them" bubble — white with left tail */
     .wa-msg.them .wa-bubble {
       background: #fff;
       color: #111;
@@ -602,7 +591,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       border-left: 6px solid transparent;
     }
 
-    /* sender name inside "them" bubbles */
     .wa-sender {
       font-size: .65rem;
       font-weight: 700;
@@ -612,7 +600,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       font-family: -apple-system, 'Helvetica Neue', sans-serif;
     }
 
-    /* "me" bubble — mint green with right tail */
     .wa-msg.me .wa-bubble {
       background: #d9fdd3;
       color: #111;
@@ -628,7 +615,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       border-right: 6px solid transparent;
     }
 
-    /* Timestamp row inside bubble */
     .wa-time {
       float: right;
       font-size: .6rem;
@@ -643,19 +629,16 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       line-height: 1;
       padding-bottom: 1px;
     }
-    /* Blue double-tick for "me" messages */
     .wa-msg.me .wa-tick {
       display: inline-flex; align-items: center;
     }
     .wa-msg.me .wa-tick svg { width: 14px; height: 9px; }
 
-    /* Spacing between consecutive same-sender messages */
     .wa-msg.them + .wa-msg.them,
     .wa-msg.me + .wa-msg.me { margin-top: 1px; }
     .wa-msg.them + .wa-msg.me,
     .wa-msg.me + .wa-msg.them { margin-top: 6px; }
 
-    /* WA Footer bar */
     .wa-footer {
       background: #f0f2f5;
       padding: 7px 10px 8px;
@@ -680,7 +663,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
     }
     .wa-send svg { width: 18px; height: 18px; fill: #fff; margin-left: 2px; }
 
-    /* Result badge below each phone */
     .wa-result-badge {
       background: var(--green-lt);
       border: 1px solid #a8d8ba;
@@ -694,7 +676,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       letter-spacing: .01em;
     }
 
-    /* star rating */
     .testi-stars { color: #f59e0b; font-size: .85rem; margin-bottom: 6px; }
 
     /* ══════════════════ PRICING ══════════════════ */
@@ -1410,7 +1391,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
 
 <!-- ═══ BUNDLE INTRODUCTION ═══ -->
 <section class="inside">
-
   <div class="container">
     <div class="section-label"><span class="tag">The Arsenal</span></div>
     <h2 class="reveal">Everything Inside The Bundle</h2>
@@ -1590,7 +1570,6 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
 
 <!-- ═══ JAVASCRIPT ═══ -->
 <script>
-  /* ─── CONFIG — replace these 4 values ─── */
   const CONFIG = {
     paystackPublicKey: 'pk_live_56cd68f5adb0e165c34545bee318900fcd3505e3',
     starter: {
@@ -1643,13 +1622,15 @@ src="https://www.facebook.com/tr?id=876645665454475&ev=PageView&noscript=1"
       metadata: { custom_fields: [{ display_name: 'Bundle Tier', variable_name: 'tier', value: currentTier }] },
       onClose() {},
       callback(response) {
+        /* ── BUG FIX: pass response.reference as 'ref' so thankyou.html
+           can verify it via isValidRef(). Also moved fbq Purchase event
+           here so it only fires after Paystack confirms payment. ── */
         if (typeof fbq !== 'undefined') fbq('track', 'Purchase', {
           value: tier.amount / 100, currency: 'NGN', content_name: tier.label
         });
-        // Redirect to thank you page, passing tier and drive link as URL params
         const params = new URLSearchParams({
-          tier: currentTier,
-          link: tier.driveLink
+          ref:  response.reference,
+          tier: currentTier
         });
         window.location.href = 'thankyou.html?' + params.toString();
       }
